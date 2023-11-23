@@ -5,5 +5,11 @@
     "workspaces": [
         "build-real-world-vue3",
         "intro-vue-3"
-    ]
+    ],
+    "scripts": {
+        "start-two": "npm run dev --workspace=build-real-world-vue3"
+    },
+    "dependencies": {
+        "axios": "^1.6.2"
+    }
 }
