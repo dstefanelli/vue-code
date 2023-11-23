@@ -1,0 +1,9 @@
+{
+    "name": "vue-mastery",
+    "version": "0.0.1",
+    "private": true,
+    "workspaces": [
+        "build-real-world-vue3",
+        "intro-vue-3"
+    ]
+}
