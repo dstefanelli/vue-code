@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import EventsListView from '../views/EventsListView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import EventDetailView from '@/views/EventDetailView.vue';
+import EventsListView from '@/views/EventsListView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +9,12 @@ const router = createRouter({
       path: '/',
       name: 'event-list',
       component: EventsListView
+    },
+    {
+      path: '/event/:id',
+      name: 'event-details',
+      props: true,
+      component: EventDetailView
     },
     {
       path: '/about',

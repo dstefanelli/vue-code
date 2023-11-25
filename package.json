@@ -7,7 +7,8 @@
         "intro-vue-3"
     ],
     "scripts": {
-        "start-two": "npm run dev --workspace=build-real-world-vue3"
+        "start-real-world": "npm run dev --workspace=build-real-world-vue3",
+        "build-real-world": "npm run build --workspace=build-real-world-vue3"
     },
     "dependencies": {
         "axios": "^1.6.2"
