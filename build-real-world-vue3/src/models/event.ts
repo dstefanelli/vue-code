@@ -1,5 +1,5 @@
-interface Event {
-  id: number;
+interface EventAPI {
+  id: string;
   category: string;
   title: string;
   description: string;

@@ -2,7 +2,7 @@
 import EventService from '@/services/EventService';
 import { ref, onMounted } from 'vue';
 
-const event = ref({} as Event);
+const event = ref({} as EventAPI);
 const props = defineProps({
     id: {
         type: Number,
