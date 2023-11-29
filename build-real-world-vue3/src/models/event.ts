@@ -1,4 +1,4 @@
-interface EventAPI {
+export interface EventAPI {
   id: string;
   category: string;
   title: string;

@@ -2,6 +2,7 @@
 import EventService from '@/services/EventService';
 import EventCard from '@/components/EventCard.vue';
 import { computed, onMounted, ref, watchEffect } from 'vue';
+import type { EventAPI } from '@/models/event';
 
 const props = defineProps(['page']);
 const events = ref([] as Array<EventAPI>);
@@ -16,12 +17,12 @@ const hasNext = computed(() => {
 onMounted(() => {
   watchEffect(()=>{
     EventService.getEvents( 2, page.value)
-      .then((response) => {
+      .then((response: any) => {
         events.value = response.data,
         totalEvents.value = response.headers['x-total-count'],
         console.log(response)
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.log(error)
       })
   })
