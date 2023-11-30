@@ -7,12 +7,14 @@ import type { EventAPI } from '@/models/event';
 const props = defineProps(['page']);
 const events = ref([] as Array<EventAPI>);
 const page = computed(()=> props.page );
+import { useRouter } from 'vue-router';
 const totalEvents = ref(0);
 const hasNext = computed(() => {
   const totalPages = Math.ceil( totalEvents.value / 2);
   return page.value < totalPages
 })
 
+const router = useRouter();
 
 onMounted(() => {
   watchEffect(()=>{
@@ -23,7 +25,7 @@ onMounted(() => {
         console.log(response)
       })
       .catch((error: any) => {
-        console.log(error)
+        router.push({ name: 'NetworkError' })
       })
   })
 })
@@ -34,8 +36,8 @@ onMounted(() => {
     <div class="events">
       <EventCard v-for="event in events" :key="event.id" :event="event" />
       <div class="pagination">
-        <RouterLink id="page-prev" :to="{ name: 'event-list', query: { page: page - 1} }" rel="prev" v-if="page != 1">Prev</RouterLink>
-        <RouterLink id="page-next" :to="{ name: 'event-list', query: { page: page + 1 } }" rel="next" v-if="hasNext">Next</RouterLink>
+        <RouterLink id="page-prev" :to="{ name: 'EventList', query: { page: page - 1} }" rel="prev" v-if="page != 1">Prev</RouterLink>
+        <RouterLink id="page-next" :to="{ name: 'EventList', query: { page: page + 1 } }" rel="next" v-if="hasNext">Next</RouterLink>
       </div>
     </div>
 </template>

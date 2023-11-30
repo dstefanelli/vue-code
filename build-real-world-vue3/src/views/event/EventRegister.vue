@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { EventAPI } from '@/models/event';
+import { inject } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const gStore: any = inject('gStore');
 
 defineProps({
     event: {
@@ -11,6 +13,10 @@ defineProps({
     }
 });
 const goToDetail = () => {
+    gStore.flashMessage = 'You are registered';
+    setTimeout(() => {
+        gStore.flashMessage = ''
+    }, 3000)
     router.push({ name: "EventDetail" })
 }
 

@@ -4,13 +4,15 @@ import EventDetail from '@/views/event/EventDetail.vue'
 import EventRegister from '@/views/event/EventRegister.vue'
 import EventEdit from '@/views/event/EventEdit.vue'
 import EventsListView from '@/views/EventsListView.vue'
+import NotFound from '@/views/NotFound.vue'
+import NetworkError from '@/views/NetworkError.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'event-list',
+      name: 'EventList',
       props: (route) => ({
         page:
           typeof route.query.page === 'string' ? parseInt(route.query.page) : route.query.page || 1
@@ -42,13 +44,13 @@ const router = createRouter({
     },
     {
       path: '/events/:afterEvent(.*)', // Redirect with childrens
-      redirect: (to) => { 
+      redirect: (to) => {
         return { path: '/event/' + to.params.afterEvent }
       }
     },
     {
       path: '/about-us',
-      name: 'about',
+      name: 'About',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -56,7 +58,27 @@ const router = createRouter({
     },
     {
       path: '/about', // In case of static redirections
-      redirect: { name: 'about' }
+      redirect: { name: 'About' }
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: { name: 'NotFound' }
+    },
+    {
+      path: '/404/:resource',
+      name: '404Resource',
+      component: NotFound,
+      props: true
+    },
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: NotFound
+    },
+    {
+      path: '/server-error',
+      name: 'NetworkError',
+      component: NetworkError
     }
   ]
 })
