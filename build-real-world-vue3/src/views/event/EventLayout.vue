@@ -17,7 +17,6 @@ onMounted(() => {
     EventService.getEvent(id.value)
         .then((response: any) => {
             event.value = response.data
-            console.log(response)
         })
         .catch((error: any) => {
             if( error.response && error.response.status === 404 ) {
